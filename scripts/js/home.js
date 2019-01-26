@@ -343,7 +343,7 @@ define(['jquery',
                 anime.timeline({
                         loop: false,
                         complete: function() {
-                            //pixelateImage();
+                            pixelateImage();
                         }
                     })
                     .add({
@@ -437,8 +437,8 @@ define(['jquery',
                         complete: function() {}
                     }).add({
                         targets: '#about-wrapper .about-anim',
-                        translateX: '-40px',
-                        opacity: 0,
+                        translateX: '-30px',
+                        opacity: [1,0],
                         elasticity: 0,
                         easing: "easeOutExpo",
                         duration: 500,
@@ -446,17 +446,17 @@ define(['jquery',
                     }).add({
                         targets: '#about',
                         scaleX: [1, 0],
-                        offset: 300,
+                        offset: 500,
                         elasticity: 0,
                         easing: "easeOutExpo",
                         duration: 500,
                     }).add({
                         targets: '.slide-scrim-behavior',
                         opacity: 1,
-                        offset: 800,
+                        offset: 1000,
                         elasticity: 0,
                         easing: "easeOutExpo",
-                        duration: 700,
+                        duration: 500,
                         complete: function(){
                             document.getElementById("email-to").style.display = 'block';
                             document.getElementById("nav-projects").style.display = 'block';
