@@ -343,7 +343,7 @@ define(['jquery',
                 anime.timeline({
                         loop: false,
                         complete: function() {
-                            pixelateImage();
+                            // pixelateImage();
                         }
                     })
                     .add({
