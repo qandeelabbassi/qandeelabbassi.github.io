@@ -393,14 +393,14 @@ define(['jquery',
                         }
                     })
             }
-
+            var animAboutReveal = null;
             function animateAbout() {
                 if (!aboutVisible) {
                     aboutVisible = true;
                     document.getElementById("email-to").style.display = 'none';
                     document.getElementById("nav-projects").style.display = 'none';
                     $('#nav-about').text("Close");
-                    anime.timeline({
+                    animAboutReveal =  anime.timeline({
                         loop: false,
                         complete: function() {}
                     }).add({
@@ -419,7 +419,7 @@ define(['jquery',
                         duration: 700,
                     }).add({
                         targets: '#about-wrapper .about-anim',
-                        translateX: '20px',
+                        translateX: ['-20px','0px'],
                         opacity: 1,
                         elasticity: 0,
                         easing: "easeOutExpo",
@@ -430,6 +430,8 @@ define(['jquery',
                         }
                     });
                 } else {
+                    if(animAboutReveal != null)
+                        animAboutReveal.seek(animAboutReveal.duration);
                     aboutVisible = false;
                     $('#nav-about').text("ABOUT");
                     anime.timeline({
@@ -437,12 +439,12 @@ define(['jquery',
                         complete: function() {}
                     }).add({
                         targets: '#about-wrapper .about-anim',
-                        translateX: '-30px',
+                        translateX: ['0px','-30px'],
                         opacity: [1,0],
                         elasticity: 0,
-                        easing: "easeOutExpo",
-                        duration: 500,
-                        offset: 0,
+                        easing: "easeInSine",
+                        duration: 300,
+                        offset: 0
                     }).add({
                         targets: '#about',
                         scaleX: [1, 0],
@@ -465,6 +467,7 @@ define(['jquery',
                 }
             }
 
+            var animStartupReveal = null;
             function animateStartup() {
                 if(aboutVisible)
                     animateAbout();
@@ -473,7 +476,7 @@ define(['jquery',
                     document.getElementById("email-to").style.display = 'none';
                     document.getElementById("nav-about").style.display = 'none';
                     $('#nav-projects').text("Close");
-                    anime.timeline({
+                    animStartupReveal = anime.timeline({
                         loop: false,
                         complete: function() {}
                     }).add({
@@ -527,6 +530,8 @@ define(['jquery',
                         }
                     });
                 } else {
+                    if(animStartupReveal != null)
+                        animStartupReveal.seek(animStartupReveal.duration);
                     projectsVisible = false;
                     $('#nav-projects').text("MY STARTUP");
                     anime.timeline({
@@ -545,16 +550,16 @@ define(['jquery',
                         opacity: [1,0],
                         translateY: ['0px','40px'],
                         elasticity: 0,
-                        easing: "easeOutExpo",
-                        duration: 500,
+                        easing: "easeInSine",
+                        duration: 300,
                         offset: 300
                     }).add({
                         targets: '.startup-media .el-opacity',
                         opacity: [1,0],
                         translateY: ['0px','40px'],
                         elasticity: 0,
-                        easing: "easeOutExpo",
-                        duration: 500,
+                        easing: "easeInSine",
+                        duration: 300,
                         offset: 300
                     }).add({
                         targets: '#my-startup',
